@@ -1,17 +1,12 @@
-
 const mongoose = require("mongoose");
 
 const ReminderSchema = new mongoose.Schema({
-  label: String,
-  createdAt: { type: Date, default: Date.now }
+  title: String,
+  dueDate: Date,
+  completed: {
+    type: Boolean,
+    default: false
+  }
 });
 
-const ActionSchema = new mongoose.Schema({
-  label: String,
-  createdAt: { type: Date, default: Date.now }
-});
-
-module.exports = {
-  Reminder: mongoose.model("Reminder", ReminderSchema),
-  Action: mongoose.model("Action", ActionSchema)
-};
+module.exports = mongoose.model("Reminder", ReminderSchema);
