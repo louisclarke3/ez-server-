@@ -1,4 +1,4 @@
-const { Reminder } = require("../models");
+new mongoose.Schema(...)
 
 const reminderSchema = new mongoose.Schema(
   {
