@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+const { Reminder } = require("../models");
 
 const reminderSchema = new mongoose.Schema(
   {
