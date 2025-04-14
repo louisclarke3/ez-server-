@@ -1,21 +1,21 @@
-new mongoose.Schema(...)
+const express = require("express");
+const router = express.Router();
 
-const reminderSchema = new mongoose.Schema(
-  {
-    label: {
-      type: String,
-      required: true,
-    },
-    dueDate: {
-      type: Date,
-      required: true,
-    },
-    completed: {
-      type: Boolean,
-      default: false,
-    },
-  },
-  { timestamps: true }
-);
+// ✅ Import Reminder model from models.js
+const { Reminder } = require("../models");
 
-module.exports = mongoose.model("Reminder", reminderSchema);
+router.get("/", async (req, res) => {
+  const data = await Reminder.find().sort({ createdAt: -1 });
+  res.json(data);
+});
+
+router.post("/", async (req, res) => {
+  const reminder = new Reminder({
+    label: req.body.label,
+    dueDate: req.body.dueDate,
+  });
+  await reminder.save();
+  res.json(reminder);
+});
+
+module.exports = router;
