@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 
 // ✅ Import Reminder model from models.js
-const { Reminder } = require("../models");
+const Reminder = require("../models");
 
 router.get("/", async (req, res) => {
   const data = await Reminder.find().sort({ createdAt: -1 });
