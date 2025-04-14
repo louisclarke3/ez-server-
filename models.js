@@ -2,14 +2,20 @@ const mongoose = require("mongoose");
 
 const reminderSchema = new mongoose.Schema(
   {
-    title: String,
-    dueDate: Date,
-    completed: Boolean,
+    label: {
+      type: String,
+      required: true,
+    },
+    dueDate: {
+      type: Date,
+      required: true,
+    },
+    completed: {
+      type: Boolean,
+      default: false,
+    },
   },
   { timestamps: true }
 );
 
-// Prevent OverwriteModelError
-const Reminder = mongoose.models.Reminder || mongoose.model("Reminder", reminderSchema);
-
-module.exports = { Reminder };
+module.exports = mongoose.model("Reminder", reminderSchema);
