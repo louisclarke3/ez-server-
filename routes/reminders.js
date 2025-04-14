@@ -1,7 +1,7 @@
 
 const express = require("express");
 const router = express.Router();
-const { Reminder } = require("../models");
+const Reminder = require("../models/reminder");
 
 router.get("/", async (req, res) => {
   const data = await Reminder.find().sort({ createdAt: -1 });
