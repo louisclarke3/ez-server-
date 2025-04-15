@@ -17,6 +17,8 @@ mongoose.connect(process.env.MONGODB_URI, {
 
 app.use("/api/reminders", require("./routes/reminders"));
 app.use("/api/actions", require("./routes/actions"));
-
+app.get("/", (req, res) => {
+  res.send("EZ-Compliance Backend is Live");
+});
 const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
